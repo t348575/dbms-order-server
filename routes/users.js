@@ -30,6 +30,7 @@ router.post('/login', (req, res) => {
                 iat: Math.floor(Date.now() / 1000) - 30
             }, key, { algorithm: 'RS256' }, function(err1, jwtToken) {
                 if (err1) {
+                    console.log(err1);
                     res.json({ status: false, token: '' });
                 } else {
                     res.json({ status: true, token: jwtToken });
