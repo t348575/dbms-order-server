@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1e29bffc-8e53-4827-8d68-9dcb5fdae351" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +40,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -49,6 +49,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="database.data.csv.formats" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="npm.start">
@@ -80,6 +81,7 @@
       <workItem from="1599143074847" duration="929000" />
       <workItem from="1599283347473" duration="1601000" />
       <workItem from="1599285119714" duration="96000" />
+      <workItem from="1599295879207" duration="3069000" />
     </task>
     <servers />
   </component>
@@ -99,6 +101,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="256" y="273" key="#SQL_Resolution_Scopes" timestamp="1599298602792">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="256" y="273" key="#SQL_Resolution_Scopes/0.0.1536.834/-1366.124.1366.738@0.0.1536.834" timestamp="1599298602792" />
+    <state x="361" y="76" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599298692861">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="76" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834/-1366.124.1366.738@0.0.1536.834" timestamp="1599298692861" />
     <state width="1323" height="252" key="GridCell.Tab.0.bottom" timestamp="1599285215289">
       <screen x="-1366" y="124" width="1366" height="738" />
     </state>
@@ -123,6 +133,10 @@
     <state width="1323" height="252" key="GridCell.Tab.0.right/0.0.1536.834/-1366.124.1366.738@-1366.124.1366.738" timestamp="1599285215289" />
     <state width="1493" height="295" key="GridCell.Tab.0.right/0.0.1536.834/-1366.124.1366.738@0.0.1536.834" timestamp="1599284956211" />
     <state width="1493" height="295" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1599144406878" />
+    <state x="277" y="62" key="SettingsEditor" timestamp="1599298656212">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834/-1366.124.1366.738@0.0.1536.834" timestamp="1599298656212" />
     <state x="478" y="150" width="579" height="534" key="find.popup" timestamp="1599118871830">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
