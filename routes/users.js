@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const crypto = require('crypto');
 const path = require('path');
+const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const mysql = require('mysql');
+const key = fs.readFileSync(path.join(__dirname, '/../private.cert'));
 const localPool = mysql.createPool({
     connectionLimit: 1000000000,
     host: 'localhost',
@@ -23,12 +25,22 @@ router.post('/login', (req, res) => {
             console.log(err);
             res.json({ status: false, token: '' });
         } else if (result.length === 1) {
-            res.json({ status: true, token: crypto.randomBytes(32).toString('hex') });
+            jwt.sign({
+                data: { username: result[0].cust_email },
+                iat: Math.floor(Date.now() / 1000) - 30
+            }, key, { algorithm: 'RS256' }, function(err1, jwtToken) {
+                if (err1) {
+                    res.json({ status: false, token: '' });
+                } else {
+                    res.json({ status: true, token: jwtToken });
+                }
+                res.status(200).end();
+            });
 
         } else {
             res.json({ status: false, token: '' });
+            res.status(200).end();
         }
-        res.status(200).end();
     });
 });
 router.post('/register', (req, res) => {
