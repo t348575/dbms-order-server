@@ -31,7 +31,7 @@ const authenticateJWT = (req, res, next) => {
         res.sendStatus(401);
     }
 };
-router.get('/get', authenticateJWT, (req, res) => {
+router.get('/get', (req, res) => {
     req.body = url.parse(req.url, true).query;
     localPool.query('SELECT * FROM products ORDER BY ? ? limit ? OFFSET ?', [req.body.sortBy, req.body.dir, req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
         if (err) {
@@ -43,7 +43,7 @@ router.get('/get', authenticateJWT, (req, res) => {
         }
     });
 });
-router.get('/search', authenticateJWT, (req, res) => {
+router.get('/search', (req, res) => {
     req.body = url.parse(req.url, true).query;
     localPool.query('SELECT * FROM products WHERE prod_name LIKE ? ORDER BY ? ? limit ? OFFSET ?', [`%${req.body.search}%`, req.body.sortBy, req.body.dir, req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
         if (err) {
@@ -55,7 +55,7 @@ router.get('/search', authenticateJWT, (req, res) => {
         }
     });
 });
-router.get('/browse', authenticateJWT, (req, res) => {
+router.get('/browse', (req, res) => {
     req.body = url.parse(req.url, true).query;
     localPool.query('SELECT * FROM products  ORDER BY RAND() limit ? OFFSET ?', [ req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
         if (err) {
