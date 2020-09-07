@@ -75,5 +75,6 @@ function randomNumbers(max) {
     const parser = new Parser(opts);
     const csv2 = parser.parse(prod_all);
     fs.writeFileSync(path.join(__dirname, '/csv/total.csv'), csv2);*/
-    const flipkart = await csv().fromFile(path.join(__dirname, '/csv/f'))
+    const flipkart = await csv().fromFile(path.join(__dirname, '/csv/flipkart_com-ecommerce_sample.csv'));
+    console.log(flipkart.length);
 })();
