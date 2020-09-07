@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const crypto = require('crypto');
+const url = require('crypto');
 const path = require('path');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
@@ -31,6 +32,7 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 router.get('/get', authenticateJWT, (req, res) => {
+    req.body = url.parse(req.url, true).query;
     localPool.query('SELECT * FROM products ORDER BY ? ? limit ? OFFSET ?', [req.body.sortBy, req.body.dir, req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
         if (err) {
             console.log(err);
@@ -42,6 +44,7 @@ router.get('/get', authenticateJWT, (req, res) => {
     });
 });
 router.get('/search', authenticateJWT, (req, res) => {
+    req.body = url.parse(req.url, true).query;
     localPool.query('SELECT * FROM products WHERE prod_name LIKE ? ORDER BY ? ? limit ? OFFSET ?', [`%${req.body.search}%`, req.body.sortBy, req.body.dir, req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
         if (err) {
             console.log(err);
