@@ -19,7 +19,7 @@ function randomNumbers(max) {
     };
 }
 (async() => {
-    let randoms = randomNumbers(1000),
+    /*let randoms = randomNumbers(1000),
     rand = randoms(),
     result = [];
     while(rand != null) {
@@ -74,5 +74,6 @@ function randomNumbers(max) {
     const opts = { fields };
     const parser = new Parser(opts);
     const csv2 = parser.parse(prod_all);
-    fs.writeFileSync(path.join(__dirname, '/csv/total.csv'), csv2);
+    fs.writeFileSync(path.join(__dirname, '/csv/total.csv'), csv2);*/
+    const flipkart = await csv().fromFile(path.join(__dirname, '/csv/f'))
 })();
