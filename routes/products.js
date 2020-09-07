@@ -57,6 +57,8 @@ router.get('/search', (req, res) => {
 });
 router.get('/browse', (req, res) => {
     req.body = url.parse(req.url, true).query;
+    req.body.page = parseInt(req.body.page, 10);
+    req.body.pageSize = parseInt(req.body.pageSize, 10);
     localPool.query('SELECT * FROM products  ORDER BY RAND() limit ? OFFSET ?', [ req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
         if (err) {
             console.log(err);
