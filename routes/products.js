@@ -55,9 +55,9 @@ router.get('/search', authenticateJWT, (req, res) => {
         }
     });
 });
-router.get('/get', authenticateJWT, (req, res) => {
+router.get('/browse', authenticateJWT, (req, res) => {
     req.body = url.parse(req.url, true).query;
-    localPool.query('SELECT * FROM products  ORDER BY RAND() limit ? OFFSET ?', [`%${req.body.search}%`, req.body.sortBy, req.body.dir, req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
+    localPool.query('SELECT * FROM products  ORDER BY RAND() limit ? OFFSET ?', [ req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
         if (err) {
             console.log(err);
             res.status(500).end();
