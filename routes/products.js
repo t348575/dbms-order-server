@@ -69,4 +69,19 @@ router.get('/browse', (req, res) => {
         }
     });
 });
+router.get('/predictSearch', (req, res) => {
+    req.body = url.parse(req.url, true).query;
+    req.body.page = parseInt(req.body.page, 10);
+    req.body.pageSize = parseInt(req.body.pageSize, 10);
+    localPool.query('SELECT * FROM products  WHERE  prod_name LIKE ? or PROD_NAME LIKE ? OR prod_name LIKE ? OR prod_name LIKE ? LIMIT 5;', [req.body.search, `${req.body.search}%`, `%${req.body.search}`, `%${req.body.search}%`], (err, results) => {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        } else {
+            res.json(results);
+            res.status(200).end();
+        }
+    });
+});
+
 module.exports = router;
