@@ -112,4 +112,33 @@ router.post('/register', (req, res) => {
         }
     });
 });
+router.post('/logout', (req, res) => {
+    jwt.verify(req.body.apiToken, publicKey, { ignoreExpiration: true },(err, data) => {
+        req.tokenData = data;
+        req.body.username = data.data.username;
+        if (req.body.username === undefined || req.body.username === null) {
+            res.json({ status: false, message: 'Invalid logout!' });
+            res.status(200).end();
+        } else {
+            localPool.query('SELECT * FROM customer WHERE cust_token = ? AND cust_email = ?', [req.body.loginToken, req.body.username], (err) => {
+                if (err) {
+                    console.log(err);
+                    res.json({ status: false, message: 'Invalid logout!' });
+                    res.status(200).end();
+                } else {
+                    localPool.query('UPDATE customer SET cust_token = ? WHERE cust_email = ?', [req.body.loginToken, req.body.username], (err) => {
+                        if (err) {
+                            console.log(err);
+                            res.json({ status: false, message: 'Could not logout!' });
+                            res.status(200).end();
+                        } else {
+                            res.json({ status: true, message: 'Successful logout!' });
+                            res.status(200).end();
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
 module.exports = router;
