@@ -71,7 +71,7 @@ router.get('/browse', (req, res) => {
 });
 router.get('/predictSearch', (req, res) => {
     req.body = url.parse(req.url, true).query;
-    localPool.query('SELECT * FROM products  WHERE  prod_name LIKE ? or PROD_NAME LIKE ? OR prod_name LIKE ? OR prod_name LIKE ? LIMIT 5;', [req.body.search, `${req.body.search}%`, `%${req.body.search}`, `%${req.body.search}%`], (err, results) => {
+    localPool.query('SELECT * FROM products  WHERE prod_name LIKE ? LIMIT 5;', [`%${req.body.search}%`], (err, results) => {
         if (err) {
             console.log(err);
             res.status(500).end();
