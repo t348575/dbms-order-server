@@ -19,7 +19,10 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/employee', employeeRouter);
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+app.get('client/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/client/index.html'));
+});
+app.get('admin/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/admin/index.html'));
 });
 module.exports = app;
