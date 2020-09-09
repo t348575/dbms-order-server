@@ -126,7 +126,7 @@ router.post('/logout', (req, res) => {
                     res.json({ status: false, message: 'Invalid logout!' });
                     res.status(200).end();
                 } else {
-                    localPool.query('UPDATE customer SET cust_token = ? WHERE cust_email = ?', [req.body.loginToken, req.body.username], (err) => {
+                    localPool.query('UPDATE customer SET cust_token = ? WHERE cust_email = ?', ['', req.body.username], (err) => {
                         if (err) {
                             console.log(err);
                             res.json({ status: false, message: 'Could not logout!' });
