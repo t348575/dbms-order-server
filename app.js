@@ -15,15 +15,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/employee', employeeRouter);
 app.use('/cart', cartRouter);
-app.get('client/*', (req, res) => {
+app.get('/client/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/client/index.html'));
 });
-app.get('admin/*', (req, res) => {
+app.get('/admin/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/admin/index.html'));
 });
 module.exports = app;
