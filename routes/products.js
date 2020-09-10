@@ -81,5 +81,16 @@ router.get('/predictSearch', (req, res) => {
         }
     });
 });
-
+router.get('/byId', (req, res) => {
+    req.body = url.parse(req.url, true).query;
+    localPool.query('SELECT * FROM products WHERE prod_id IN (?)', [req.body.ids], (err, results) => {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        } else {
+            res.json(results);
+            res.status(200).end();
+        }
+    })
+});
 module.exports = router;
