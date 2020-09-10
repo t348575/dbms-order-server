@@ -147,6 +147,7 @@ router.post('/addEmployees', authenticateJWT, (req, res) => {
                     console.log(err);
                     res.json({ error: err });
                 }
+                res.json({ errList });
                 res.status(200).end();
             });
         })();
