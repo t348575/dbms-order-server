@@ -18,7 +18,6 @@ function randomNumbers(max) {
         return myArr.shift();
     };
 }
-
 Array.prototype.max = function(comparer) {
 
     if (this.length === 0) return null;

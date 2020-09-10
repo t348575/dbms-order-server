@@ -15,6 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res) => { res.redirect('/client'); });
+// app.use('/', indexRouter)
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/employee', employeeRouter);
