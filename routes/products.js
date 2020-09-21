@@ -16,21 +16,6 @@ const localPool = mysql.createPool({
     database: 'order_mgmt',
     multipleStatments: 'true'
 });
-const authenticateJWT = (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    if (authHeader) {
-        const token = authHeader.split(' ')[1];
-        jwt.verify(token, publicKey, (err, data) => {
-            if (err) {
-                return res.sendStatus(403);
-            }
-            req.tokenData = data;
-            next();
-        });
-    } else {
-        res.sendStatus(401);
-    }
-};
 router.get('/get', (req, res) => {
     req.body = url.parse(req.url, true).query;
     localPool.query('SELECT * FROM products ORDER BY ? ? limit ? OFFSET ?', [req.body.sortBy, req.body.dir, req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
@@ -45,7 +30,7 @@ router.get('/get', (req, res) => {
 });
 router.get('/search', (req, res) => {
     req.body = url.parse(req.url, true).query;
-    localPool.query('SELECT * FROM products WHERE prod_name LIKE ? ORDER BY ? ? limit ? OFFSET ?', [`%${req.body.search}%`, req.body.sortBy, req.body.dir, req.body.pageSize, req.body.page * req.body.pageSize], (err, results) => {
+    localPool.query(`SELECT * FROM products WHERE prod_name LIKE ? ORDER BY ${req.body.sortBy} ${req.body.dir} limit ${req.body.pageSize} OFFSET ?`, [`%${req.body.search}%`, req.body.page * req.body.pageSize], (err, results) => {
         if (err) {
             console.log(err);
             res.status(500).end();
