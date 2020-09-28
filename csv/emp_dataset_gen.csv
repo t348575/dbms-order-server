@@ -1,0 +1,9 @@
+﻿emp_type,emp_job_title,emp_salary,frequency
+manager,General Manager,500000,1
+manager,Warehouse Manager,150000,1
+manager,Shipping Manager,200000,1
+delivery,Delivery Primary,45000,30
+delivery,Delivery Assistant,35000,30
+clerk,Warehouse Clerk,55000,30
+clerk,Customer Service,35000,30
+clerk,General Clerk,75000,30

@@ -94,7 +94,7 @@ function getRandomInt(min, max) {
     const parser = new Parser(opts);
     const csv2 = parser.parse(prod_all);
     fs.writeFileSync(path.join(__dirname, '/csv/total.csv'), csv2);*/
-    let flipkart = await csv().fromFile(path.join(__dirname, '/csv/flipkart_com-ecommerce_sample.csv'));
+    /*let flipkart = await csv().fromFile(path.join(__dirname, '/csv/flipkart_com-ecommerce_sample.csv'));
     let randoms = randomNumbers(5000),
         rand = randoms(),
         result = [];
@@ -158,5 +158,18 @@ function getRandomInt(min, max) {
     const opts = { fields };
     const parser = new Parser(opts);
     const csv2 = parser.parse(newFlipkart);
-    fs.writeFileSync(path.join(__dirname, '/csv/parsed_flipkart.csv'), csv2);
+    fs.writeFileSync(path.join(__dirname, '/csv/parsed_flipkart.csv'), csv2);*/
 })();
+const emp_data = JSON.parse(fs.readFileSync('csv/emp_json.json').toString());
+for (const v of emp_data) {
+    v.emp_id = crypto.randomBytes(32).toString('hex');
+    v.emp_token = '';
+    v.emp_payment = JSON.stringify(v.emp_payment);
+    delete v.exp_temp;
+    delete v.emp_phone_temp;
+}
+const fields = ['emp_name', 'emp_type', 'emp_job_title', 'emp_salary', 'emp_dob', 'emp_hours', 'emp_password', 'emp_phone', 'emp_payment', 'emp_id', 'emp_token'];
+const opts = { fields };
+const parser = new Parser(opts);
+const csv2 = parser.parse(emp_data);
+fs.writeFileSync(path.join(__dirname, '/csv/parsed_emp.csv'), csv2);

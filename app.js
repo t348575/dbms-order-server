@@ -8,6 +8,8 @@ const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const employeeRouter = require('./routes/employee');
 const cartRouter = require('./routes/cart');
+const userDataRouter = require('./routes/userData');
+const orderRouter = require('./routes/order');
 const app = express();
 app.use(logger('dev'));
 app.use(cors());
@@ -21,6 +23,8 @@ app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/employee', employeeRouter);
 app.use('/cart', cartRouter);
+app.use('/userData', userDataRouter);
+app.use('/order', orderRouter);
 app.get('/client/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/client/index.html'));
 });

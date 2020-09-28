@@ -15,7 +15,7 @@ const localPool = mysql.createPool({
     user: 'root',
     password: 'kanichai',
     database: 'order_mgmt',
-    multipleStatments: 'true'
+    multipleStatements: 'true'
 });
 function getDate(date) {
     const newDate = new Date(date);

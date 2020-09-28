@@ -15,7 +15,7 @@ const localPool = mysql.createPool({
     user: 'root',
     password: 'kanichai',
     database: 'order_mgmt',
-    multipleStatments: 'true'
+    multipleStatements: 'true'
 });
 function getDate(date) {
     const newDate = new Date(date);
@@ -104,7 +104,7 @@ router.post('/register', (req, res) => {
             res.json({ status: false, message: 'Improper password format!' });
             res.status(200).end();
         } else {
-            localPool.query('INSERT INTO customer VALUES(?,?,?,?,?,?,?,?,?)', [crypto.randomBytes(32).toString('hex'), req.body.email, hash, '',req.body.name, req.body.dob, req.body.phone, req.body.address, '[]'], (err) => {
+            localPool.query('INSERT INTO customer VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)', [crypto.randomBytes(32).toString('hex'), req.body.email, hash, '',req.body.name, req.body.dob, req.body.phone, '[]', req.body.address, req.body.country, req.body.region, req.body.city, req.body.pinCode], (err) => {
                 if (err) {
                     console.log(err);
                     res.json({ status: false, message: 'Account under this email or phone already exists!' });
