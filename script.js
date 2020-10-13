@@ -160,16 +160,43 @@ function getRandomInt(min, max) {
     const csv2 = parser.parse(newFlipkart);
     fs.writeFileSync(path.join(__dirname, '/csv/parsed_flipkart.csv'), csv2);*/
 })();
-const emp_data = JSON.parse(fs.readFileSync('csv/emp_json.json').toString());
+/*const emp_data = JSON.parse(fs.readFileSync('csv/emp_json.json').toString());
+const emails = [];
 for (const v of emp_data) {
     v.emp_id = crypto.randomBytes(32).toString('hex');
     v.emp_token = '';
     v.emp_payment = JSON.stringify(v.emp_payment);
     delete v.exp_temp;
     delete v.emp_phone_temp;
+    const firstName = v.emp_name.split(' ').slice(0, -1).join(' ').toLowerCase();
+    const lastName = v.emp_name.split(' ').slice(-1).join(' ').toLowerCase();
+    v.emp_email = `${firstName}.${lastName}@toolshed.com`;
+    if (emails.indexOf(v.email) > -1) {
+        let idx = 1;
+        while (true) {
+            const email = `${firstName}.${lastName}${idx}@toolshed.com`;
+            if (emails.indexOf(email) === -1) {
+                emails.push(email);
+                v.emp_email = email;
+                break;
+            } else {
+                idx++;
+            }
+        }
+    } else {
+        emails.push(v.emp_email);
+    }
 }
-const fields = ['emp_name', 'emp_type', 'emp_job_title', 'emp_salary', 'emp_dob', 'emp_hours', 'emp_password', 'emp_phone', 'emp_payment', 'emp_id', 'emp_token'];
+const fields = ['emp_name', 'emp_type', 'emp_job_title', 'emp_salary', 'emp_dob', 'emp_hours', 'emp_password', 'emp_phone', 'emp_email', 'emp_payment', 'emp_id', 'emp_token'];
 const opts = { fields };
 const parser = new Parser(opts);
 const csv2 = parser.parse(emp_data);
-fs.writeFileSync(path.join(__dirname, '/csv/parsed_emp.csv'), csv2);
+fs.writeFileSync(path.join(__dirname, '/csv/parsed_emp.csv'), csv2);*/
+const regions = [];
+const countries = JSON.parse(fs.readFileSync(path.join(__dirname, 'csv/countries-region.json')).toString());
+for (const v of countries) {
+    for (const k of v.regions) {
+        regions.push({ region: k.name, country: v.countryName });
+    }
+}
+fs.writeFileSync(path.join(__dirname, 'csv/countries-region-parsed.json'), JSON.stringify(regions, null, 0));

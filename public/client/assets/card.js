@@ -94,7 +94,7 @@ var card =
                         placeholders: {
                             number: '&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull;',
                             cvc: '&bull;&bull;&bull;',
-                            expiry: '&bull;&bull;/&bull;&bull;',
+                            exp: '&bull;&bull;/&bull;&bull;',
                             name: 'Full Name'
                         },
                         masks: {
