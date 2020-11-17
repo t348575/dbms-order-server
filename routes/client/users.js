@@ -107,7 +107,8 @@ router.post('/register', (req, res) => {
             const id = crypto.randomBytes(32).toString('hex');
             localPool.query('INSERT INTO customer VALUES (?,?,?,?,?,?,?,?);' +
                 ' INSERT INTO customer_address_pincode VALUES (?, ?, ?, ?); ' +
-                ' INSERT IGNORE INTO city_region VALUES (?, ?)',
+                ' INSERT IGNORE INTO city_region VALUES (?, ?);' +
+                ' CALL add_customer_care(?)',
                 [
                     id,
                     req.body.email,
@@ -122,7 +123,8 @@ router.post('/register', (req, res) => {
                     req.body.city,
                     req.body.address,
                     req.body.city,
-                    req.body.region
+                    req.body.region,
+                    id
                 ], (err) => {
                 if (err) {
                     console.log(err);
