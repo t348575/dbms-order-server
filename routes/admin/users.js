@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const key = fs.readFileSync(path.join(__dirname, '/../../private.cert'));
 const publicKey = fs.readFileSync(path.join(__dirname, '/../../public.cert'));
 const localPool = mysql.createPool({
-    connectionLimit: 1000000000,
+
     host: 'localhost',
     port: 3306,
     user: 'root',

@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const mysql = require('mysql');
 const publicKey = fs.readFileSync(path.join(__dirname, '/../../public.cert'));
 const localPool = mysql.createPool({
-    connectionLimit: 1000000000,
+
     host: 'localhost',
     port: 3306,
     user: 'root',
@@ -58,7 +58,6 @@ router.get('/', authenticateJWT, (req, res) => {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     localPool.query(`SELECT count(cust_dob) as total FROM customer; SELECT count(emp_dob) as total FROM employee; SELECT count(ord_prod) as total from orders; select count(prod_stock) as total from products; SELECT SUM(ord_summ->'$.total') as total from orders where ord_date >= '${toMysqlFormat(yesterday)}'`, (err, results) => {
-        console.log(results);
         res.json({
             uptime,
             customers: results[0][0].total,
